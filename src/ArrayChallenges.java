@@ -1,3 +1,5 @@
+import JmbUtils.InputValidator;
+
 public final class ArrayChallenges {
     public static void Challenge1() {
         String[] playerNames = new String[2];

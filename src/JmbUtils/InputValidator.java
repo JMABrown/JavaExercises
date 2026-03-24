@@ -1,6 +1,8 @@
+package JmbUtils;
+
 import java.util.Scanner;
 
-/*public class InputValidator<T> {
+/*public class JmbUtils.InputValidator<T> {
     public T Get(String message) {
         System.out.println(message);
         Scanner scanner = new Scanner(System.in);
@@ -147,7 +149,7 @@ public final class InputValidator {
     }
 
     @FunctionalInterface
-    interface CheckInt {
+    public interface CheckInt {
         boolean Check(int value);
     }
 }

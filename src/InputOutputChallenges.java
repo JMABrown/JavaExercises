@@ -1,3 +1,5 @@
+import JmbUtils.InputValidator;
+
 import java.util.Scanner;
 
 public class InputOutputChallenges {

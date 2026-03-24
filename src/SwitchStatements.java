@@ -1,3 +1,5 @@
+import JmbUtils.InputValidator;
+
 public class SwitchStatements {
     public static void Task2() {
         var monthInput = InputValidator.GetCustomInteger(

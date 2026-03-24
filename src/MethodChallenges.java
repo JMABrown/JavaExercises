@@ -1,4 +1,5 @@
-import java.io.Console;
+import JmbUtils.InputValidator;
+
 import java.util.ArrayList;
 
 public class MethodChallenges {
