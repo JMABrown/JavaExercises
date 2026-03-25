@@ -22,6 +22,15 @@ public class ITFault {
     }
 
     public void setSourceBuilding(String sourceBuilding) {
+        if (sourceBuilding == null) {
+            throw new IllegalArgumentException("sourceBuilding must not be null");
+        }
+        if (sourceBuilding.isEmpty()) {
+            throw new IllegalArgumentException("sourceBuilding must not be empty");
+        }
+        if (sourceBuilding.matches("\\s+")) {
+            throw new IllegalArgumentException("sourceBuilding must contain text");
+        }
         this.sourceBuilding = sourceBuilding;
     }
 
@@ -30,6 +39,15 @@ public class ITFault {
     }
 
     public void setSourceRoom(String sourceRoom) {
+        if (sourceRoom == null) {
+            throw new IllegalArgumentException("Source room must not be null");
+        }
+        if (sourceRoom.isEmpty()) {
+            throw new IllegalArgumentException("Source room must not be empty");
+        }
+        if (sourceRoom.matches("\\s+")) {
+            throw new IllegalArgumentException("Source room must contain text");
+        }
         this.sourceRoom = sourceRoom;
     }
 
@@ -38,6 +56,15 @@ public class ITFault {
     }
 
     public void setType(String type) {
+        if (type == null) {
+            throw new IllegalArgumentException("Artist name must not be null");
+        }
+        if (type.isEmpty()) {
+            throw new IllegalArgumentException("Artist name must not be empty");
+        }
+        if (type.matches("\\s+")) {
+            throw new IllegalArgumentException("Artists name must contain text");
+        }
         this.type = type;
     }
 
@@ -46,6 +73,9 @@ public class ITFault {
     }
 
     public void setDescription(String description) {
+        if (description.length() > 300) {
+            throw new IllegalArgumentException("Description must not exceed 300 characters in length");
+        }
         this.description = description;
     }
 

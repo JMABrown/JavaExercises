@@ -39,6 +39,12 @@ public class Album {
     }
 
     public void setName(String name) {
+        if (artist == null) {
+            throw new IllegalArgumentException("Artist name must not be null");
+        }
+        if (artist.isEmpty()) {
+            throw new IllegalArgumentException("Artist name must not be empty");
+        }
         this.name = name;
     }
 
@@ -47,6 +53,9 @@ public class Album {
     }
 
     public void setPrice(double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price must be greater than or equal to zero");
+        }
         this.price = price;
     }
 
@@ -55,6 +64,9 @@ public class Album {
     }
 
     public void setStockQuantity(int stockQuantity) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Stock must be greater than or equal to zero");
+        }
         this.stockQuantity = stockQuantity;
     }
 

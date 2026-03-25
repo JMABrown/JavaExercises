@@ -42,5 +42,17 @@ public class AlbumTest {
         InputValidator.GetValidated(
                 () -> InputValidator.GetString("Enter artists name"),
                 album::setArtist);
+
+        InputValidator.GetValidated(
+                () -> InputValidator.GetString("Enter albums name"),
+                album::setName);
+
+        InputValidator.GetValidated(
+                () -> InputValidator.GetDouble("Enter the price of the album"),
+                album::setPrice);
+
+        InputValidator.GetValidated(
+                () -> InputValidator.GetInt("How much stock is there of the album?"),
+                album::setStockQuantity);
     }
 }
