@@ -3,18 +3,19 @@ package ClassesChallenges;
 public class ITFault {
     private String sourceBuilding;
     private String sourceRoom;
-    private String type;
+    private EnumType type;
     private String description;
+    private boolean resolved = false;
+
+    public ITFault() {
+
+    };
 
     public ITFault(String sourceBuilding, String sourceRoom, String type, String description) {
-        this.sourceBuilding = sourceBuilding;
-        this.sourceRoom = sourceRoom;
-        this.type = type;
-
-        if (description.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        this.description = description;
+        setSourceBuilding(sourceBuilding);
+        setSourceRoom(sourceRoom);
+        setType(type);
+        setDescription(description);
     }
 
     public String getSourceBuilding() {
@@ -51,21 +52,24 @@ public class ITFault {
         this.sourceRoom = sourceRoom;
     }
 
-    public String getType() {
+    public EnumType getType() {
         return type;
     }
 
     public void setType(String type) {
         if (type == null) {
-            throw new IllegalArgumentException("Artist name must not be null");
+            throw new IllegalArgumentException("Type must not be null");
         }
         if (type.isEmpty()) {
-            throw new IllegalArgumentException("Artist name must not be empty");
+            throw new IllegalArgumentException("Type must not be empty");
         }
-        if (type.matches("\\s+")) {
-            throw new IllegalArgumentException("Artists name must contain text");
+        try {
+            this.type = EnumType.valueOf(type.toLowerCase());
+        } catch (IllegalArgumentException e) {
+            String message = "Must enter one of the following: \n";
+            message = message.concat(ITFault.GetAllEnumTypesString());
+            throw new IllegalArgumentException(message);
         }
-        this.type = type;
     }
 
     public String getDescription() {
@@ -84,5 +88,28 @@ public class ITFault {
         System.out.println("Source room: " + sourceRoom);
         System.out.println("Type: " + type);
         System.out.println("Description: " + description);
+    }
+
+    public static String GetAllEnumTypesString() {
+        String message = "";
+        for (var value : EnumType.values()) {
+            message = message.concat(value + "\n");
+        }
+        return message;
+    }
+
+    public boolean isResolved() {
+        return resolved;
+    }
+
+    public void setResolved(boolean resolved) {
+        this.resolved = resolved;
+    }
+
+    public enum EnumType {
+        hardware,
+        software,
+        network,
+        pebcak;
     }
 }
