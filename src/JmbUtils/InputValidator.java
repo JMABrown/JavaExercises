@@ -1,6 +1,8 @@
 package JmbUtils;
 
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 /*public class JmbUtils.InputValidator<T> {
     public T Get(String message) {
@@ -17,6 +19,30 @@ public final class InputValidator {
 
     public InputValidator() {
         scanner = new Scanner(System.in);
+    }
+
+    public static <T> T GetValidObject(Supplier<T> constructor) {
+        while (true) {
+            try {
+                return constructor.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input: " + e.getMessage());
+            }
+        }
+    }
+
+    // Getter - NON throwing
+    // Setter - class specific throwing
+    public static <T> T GetValidated(Supplier<T> getter, Consumer<T> validator) {
+        while (true) {
+            try {
+                T value = getter.get();
+                validator.accept(value);
+                return value;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input: " + e.getMessage());
+            }
+        }
     }
 
     public static void Validate() {
@@ -40,7 +66,27 @@ public final class InputValidator {
             }
         }
 //        return cleanUserInput;
+        //Exception
     }
+
+    /* Input that is valid, but throws an exception when trying to assign to an object based on its own rules?
+     * Get the input
+     * Assign the input (can throw exception)
+     *
+     * args -> type exception, format exception
+     * while (true) {
+     *      try {
+     *          int = InputValidator.GetInt(...)
+     *          break;
+     *      } catch (Exception error1) {
+     *          // Handle exception 1
+     *      } catch (Exception error2) {
+     *          // Handle exception 2
+     *      }
+     * }
+     *
+     *
+     */
 
     public static double GetDouble(String message) {
         Validate();
@@ -103,7 +149,7 @@ public final class InputValidator {
         Validate();
 
         System.out.println(message);
-        String userInput = scanner.nextLine();;
+        String userInput = scanner.nextLine();
         return userInput;
     }
 
