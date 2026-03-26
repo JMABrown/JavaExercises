@@ -1,3 +1,5 @@
+package org.example;
+
 public final class IfStatements {
     public static void Exercise1() {
         int x = 50;

@@ -1,7 +1,6 @@
-package ClassesChallenges;
+package org.example.ClassesChallenges;
 
-import JmbUtils.FieldAwareInputValidator;
-import JmbUtils.InputValidator;
+import org.example.JmbUtils.InputValidator;
 
 public class AlbumTest {
     public static void RunTest() {

@@ -1,4 +1,4 @@
-package JmbUtils;
+package org.example.JmbUtils;
 
 import java.util.Scanner;
 import java.util.function.Consumer;

@@ -1,4 +1,4 @@
-package ClassesChallenges;
+package org.example.ClassesChallenges;
 
 import java.util.ArrayList;
 

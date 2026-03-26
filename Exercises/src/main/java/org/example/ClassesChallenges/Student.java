@@ -1,4 +1,4 @@
-package ClassesChallenges;
+package org.example.ClassesChallenges;
 
 public class Student {
     private String name;

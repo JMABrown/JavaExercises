@@ -1,4 +1,4 @@
-package ClassesChallenges;
+package org.example.ClassesChallenges;
 
 public class Album {
     private String artist;

@@ -1,10 +1,10 @@
-package JmbUtils;
+package org.example.JmbUtils;
 
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-/*public class JmbUtils.InputValidator<T> {
+/*public class org.example.JmbUtils.InputValidator<T> {
     public T Get(String message) {
         System.out.println(message);
         Scanner scanner = new Scanner(System.in);

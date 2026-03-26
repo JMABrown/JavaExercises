@@ -1,8 +1,12 @@
-package ClassesChallenges;
+package org.example.ClassesChallenges;
 
-import JmbUtils.InputValidator;
+import com.google.gson.Gson;
+import org.example.JmbUtils.InputValidator;
 
-import javax.swing.text.View;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class ITFaultCRUD {
@@ -10,6 +14,8 @@ public class ITFaultCRUD {
     ArrayList<ITFault> faults = new ArrayList<>();
 
     public void Run() {
+
+        Save();
 
         int userChoice;
         do {
@@ -100,5 +106,26 @@ public class ITFaultCRUD {
                 (v) -> v >= 1 && v <= faults.size());
         faultIndex--;
         faults.remove(faultIndex);
+    }
+
+    public void Save() {
+        Gson gson = new Gson();
+        String contents = gson.toJson(faults);
+
+        //File file = new File(".");
+        //System.out.println(file.getAbsolutePath());
+
+        //System.out.println(System.getenv("APPDATA"));
+
+        /*FileWriter writer;
+        try {
+            writer = new FileWriter(file, true);
+            PrintWriter printer = new PrintWriter(writer);
+            printer.append("Sue");
+            printer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
     }
 }

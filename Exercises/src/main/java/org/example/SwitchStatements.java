@@ -1,4 +1,6 @@
-import JmbUtils.InputValidator;
+package org.example;
+
+import org.example.JmbUtils.InputValidator;
 
 public class SwitchStatements {
     public static void Task2() {
