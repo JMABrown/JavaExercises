@@ -25,7 +25,7 @@ public class ITFaultCRUD {
                             "3 - Update fault\n" +
                             "4 - Delete fault\n" +
                             "5 - Exit",
-                    (v) -> v >= 1 && v <= 4);
+                    (v) -> v >= 1 && v <= 5);
 
             switch (userChoice) {
                 case 1 -> ViewAllFaults();
