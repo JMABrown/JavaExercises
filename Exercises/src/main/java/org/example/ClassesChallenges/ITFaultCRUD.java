@@ -1,12 +1,14 @@
 package org.example.ClassesChallenges;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.example.JmbUtils.InputValidator;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.lang.reflect.Type;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class ITFaultCRUD {
@@ -14,10 +16,8 @@ public class ITFaultCRUD {
     ArrayList<ITFault> faults = new ArrayList<>();
 
     public void Run() {
-
-        Save();
-
         int userChoice;
+        Load();
         do {
             userChoice = InputValidator.GetCustomInteger("What would you like to do? (Enter a number)\n" +
                             "1 - View faults\n" +
@@ -33,6 +33,8 @@ public class ITFaultCRUD {
                 case 3 -> UpdateFault();
                 case 4 -> DeleteFault();
             }
+
+            Save();
         } while (userChoice != 5);
         System.out.println("Thank you, goodbye");
     }
@@ -108,24 +110,69 @@ public class ITFaultCRUD {
         faults.remove(faultIndex);
     }
 
-    public void Save() {
-        Gson gson = new Gson();
-        String contents = gson.toJson(faults);
+    public void Load() {
+        File appDataDirectory = new File(System.getenv("APPDATA"));
+        File appRoot = new File(appDataDirectory, "JmbITFaultsApp");
+        File dataDirectory = new File(appRoot, "Data");
+        var dataPath = Paths.get(dataDirectory.getPath());
 
-        //File file = new File(".");
-        //System.out.println(file.getAbsolutePath());
+        if (Files.notExists(dataPath)) {
+            return;
+        }
 
-        //System.out.println(System.getenv("APPDATA"));
+        var saveFile = dataPath.resolve("save.txt");
+        if (Files.notExists(saveFile)) {
+            return;
+        }
 
-        /*FileWriter writer;
+        FileReader reader;
         try {
-            writer = new FileWriter(file, true);
+            reader = new FileReader(saveFile.toAbsolutePath().toString());
+            String contents = reader.readAllAsString();
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<ITFault>>(){}.getType();
+            faults = gson.fromJson(contents, listType);
+            reader.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void Save() {
+        File appDataDirectory = new File(System.getenv("APPDATA"));
+        File appRoot = new File(appDataDirectory, "JmbITFaultsApp");
+        File dataDirectory = new File(appRoot, "Data");
+        var dataPath = Paths.get(dataDirectory.getPath());
+
+        if (Files.notExists(dataPath)) {
+            try {
+                Files.createDirectories(dataPath);
+            } catch (Exception e) {
+
+            }
+        }
+
+        var saveFile = dataPath.resolve("save.txt");
+        if (Files.notExists(saveFile)) {
+            try {
+                Files.createFile(saveFile);
+            } catch (Exception e) {
+
+            }
+        }
+
+        FileWriter writer;
+        try {
+            writer = new FileWriter(saveFile.toAbsolutePath().toString(), false);
             PrintWriter printer = new PrintWriter(writer);
-            printer.append("Sue");
+            Gson gson = new Gson();
+            String contents = gson.toJson(faults);
+            printer.append(contents);
             printer.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
+        }
     }
 }
