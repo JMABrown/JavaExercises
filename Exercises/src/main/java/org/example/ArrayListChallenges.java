@@ -1,3 +1,7 @@
+package org.example;
+
+import org.example.JmbUtils.InputValidator;
+
 import java.util.ArrayList;
 
 public final class ArrayListChallenges {
